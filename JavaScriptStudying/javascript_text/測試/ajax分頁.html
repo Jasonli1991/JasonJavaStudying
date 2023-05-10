@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<script>
+$(function() {
+  $('#menu a').click(function() {
+    var page = $(this).data('page');
+    $.ajax({
+      url: page + '.html',
+      type: 'GET',
+      success: function(response) {
+        $('#page-content').html(response);
+      },
+      error: function(xhr, status, error) {
+        alert('載入分頁失敗: ' + error);
+      }
+    });
+  });
+});
+
+
+</script>
+<body>
+    <div>
+        <ul id="menu">
+            <li><a href="#" data-page="home">首頁</a></li>
+            <li><a href="#" data-page="ajax分頁style">版型風格</a></li>
+            <li><a href="#" data-page="guide">穿搭指南</a></li>
+            <li><a href="#" data-page="store">實體門市</a></li>
+        </ul>
+      </div>
+      
+    <div id="page-content"></div>   
+</body>
+</html>

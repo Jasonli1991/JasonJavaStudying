@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Button with Popup Window</title>
+	<style>
+		/* 定義彈出視窗的樣式 */
+		.popup {
+			display: none; /* 預設不顯示 */
+			position: fixed; /* 固定位置 */
+			top: 0; /* 與上方的距離 */
+			left: 0; /* 與左側的距離 */
+			width: 100%; /* 寬度佔滿整個畫面 */
+			height: 100%; /* 高度佔滿整個畫面 */
+			background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色底 */
+			z-index: 999; /* 顯示在最上層 */
+		}
+		
+		.popup-content {
+			position: absolute; /* 絕對位置 */
+			top: 50%; /* 上方與中心對齊 */
+			left: 50%; /* 左側與中心對齊 */
+			transform: translate(-50%, -50%); /* 調整位置到中心 */
+			background-color: white; /* 白色背景 */
+			padding: 20px; /* 內距 */
+			border-radius: 5px; /* 圓角 */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 陰影效果 */
+		}
+	</style>
+</head>
+<script>
+    // 定義開啟彈出視窗的函式
+    function openPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+    
+    // 定義關閉彈出視窗的函式
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+<body>
+	<!-- 定義按鈕 -->
+	<button onclick="openPopup()">點擊這裡彈出視窗</button>
+	
+	<!-- 定義彈出視窗 -->
+	<div id="popup" class="popup" onclick="closePopup()">
+        <!-- 事件捕獲(冒泡) -->
+		<div class="popup-content" onclick="event.stopPropagation()"> 
+			<p>這是一個彈出視窗</p>
+			<p>點擊視窗以外的地方可以關閉視窗</p>
+		</div>
+	</div>
+</body>
+</html>

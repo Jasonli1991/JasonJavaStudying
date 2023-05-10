@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>購物車</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<h1>購物車</h1>
+	<ul id="cart">
+		<!-- 在這裡顯示購物車內容 -->
+	</ul>
+
+	<script>
+        // 獲取購物車內容
+        var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // 將購物車內容顯示在頁面上
+        var cartList = $('#cart');
+        for (var i = 0; i < cart.length; i++) {
+            var item = cart[i];
+            var li = $('<li></li>');
+    
+            // 商品名稱
+            var nameSpan = $('<span></span>');
+            nameSpan.text(item.name);
+            li.append(nameSpan);
+    
+            // 商品數量
+            var countSpan = $('<span></span>');
+            countSpan.text(' x ' + item.count);
+            li.append(countSpan);
+    
+            // 增加按鈕
+            var addBtn = $('<button>+</button>');
+            addBtn.attr('data-index', i);
+            addBtn.on('click', function() {
+                var index = parseInt($(this).attr('data-index'));
+                cart[index].count++;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload();
+            });
+            li.append(addBtn);
+    
+            // 減少按鈕
+            var removeBtn = $('<button>-</button>');
+            removeBtn.attr('data-index', i);
+            removeBtn.on('click', function() {
+                var index = parseInt($(this).attr('data-index'));
+                if (cart[index].count > 1) {
+                    cart[index].count--;
+                } else {
+                    cart.splice(index, 1);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload();
+            });
+            li.append(removeBtn);
+    
+            // 移除按鈕
+            var removeBtn = $('<button>移除</button>');
+            removeBtn.attr('data-index', i);
+            removeBtn.on('click', function() {
+                var index = parseInt($(this).attr('data-index'));
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload();
+            });
+            li.append(removeBtn);
+    
+            cartList.append(li);
+        }
+    </script>
+    
+</body>
+</html>

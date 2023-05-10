@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+// $(function() {
+//     $('button').click(function() {
+//         $('label').html('Hello, World!!')
+//     })
+// })
+
+//箭頭函式
+// $(() => $("button").click(() => $("label").html("Hello World!!")))
+
+$(function() {
+    $("button").on("click", function() {   //同.addeventListener
+        $("label").html("Hello, World!!")
+    })
+})
+</script>
+<body>
+    <button>click</button><p></p>
+    <label></label>
+</body>
+</html>

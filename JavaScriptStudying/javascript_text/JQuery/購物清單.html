@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    let table = $('<table border="1"></table>')
+    table.hide()
+    $('body').append(table)
+
+    $('button').click(function() {
+        table.show()
+        let label = $(this).prev().text()
+        let buylist = null
+        table.find('tr').each(function() {
+            if ($(this).find('td:first-child').text() == label) {
+                buylist = $(this)
+            }
+        })
+        if (buylist) {
+            let quantity = parseInt(buylist.children('td').last().text())
+            buylist.children('td').last().text(quantity + 1)
+        } else {
+            buylist = $('<tr><td>' + label + '</td><td>1</td><td><button>刪除</button></td></tr>')
+            buylist.children('td').last().children('button').click(function() {
+                $(this).parent().parent().remove()
+                if (table.children().length == 0) {
+                    table.hide()
+                }
+            })
+            table.append(buylist)
+        }
+    })
+})
+</script>
+<body>
+    <div id="a01">
+        <label>鉛筆</label>
+        <button>放入購物車</button>
+    </div>
+    <div id="a02">
+        <label>原子筆</label>
+        <button>放入購物車</button>
+    </div>
+    <div id="a03">
+        <label>橡皮擦</label>
+        <button>放入購物車</button>
+    </div>
+</body>
+</html>

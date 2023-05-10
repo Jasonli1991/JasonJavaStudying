@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品列表</title>
+</head>
+<body>
+	<h1>商品列表</h1>
+	<ul id="product-list">
+		<!-- 在這裡動態加載商品列表 -->
+	</ul>
+	<button onclick="goToCart()">購物車</button>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		// 獲取商品列表並顯示在頁面上
+		$(document).ready(function() {
+			$.ajax({
+				url: 'product-list.json',
+				dataType: 'json',
+				success: function(data) {
+					var productList = $('#product-list');
+					$.each(data, function(index, product) {
+						var li = $('<li>');
+						var nameSpan = $('<span>').text(product.name);
+						var addBtn = $('<button>').text('加入購物車').on('click', function() {
+							addToCart(product.name);
+						});
+						li.append(nameSpan, addBtn);
+						productList.append(li);
+					});
+				},
+				error: function(xhr, status, error) {
+					console.error('獲取商品列表失敗：', error);
+				}
+			});
+		});
+
+		// 將商品添加到購物車
+		function addToCart(name) {
+			$.ajax({
+				url: 'add-to-cart.php',
+				method: 'POST',
+				data: { name: name },
+				dataType: 'json',
+				success: function(response) {
+					alert('已加入購物車');
+				},
+				error: function(xhr, status, error) {
+					console.error('添加到購物車失敗：', error);
+				}
+			});
+		}
+
+		// 跳轉到購物車頁面
+		function goToCart() {
+			window.location.href = 'cart.php';
+		}
+	</script>
+</body>
+</html>

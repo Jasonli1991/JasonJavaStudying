@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+function verticalCenter() {
+   $('div')
+       .not('.container')
+       .not('.vstack')
+       .each(function(index, el) {
+           $(el).html('<p>' + $(el).html() + '</p>')
+       })
+}
+
+function getBoxes() {
+   return $('div')
+       .not('.container')
+       .not('.vstack')
+}
+
+function shuffle(elements) {
+//    for (let n = 0; n < 1000; n++) {
+//        let i = parseInt(Math.random() * 9)
+//        let j = parseInt(Math.random() * 9)
+//        let tmp = elements[i]
+//        elements[i] = elements[j]
+//        elements[j] = tmp
+//    }
+
+   for (let i = elements.length - 1; i > 0; i--) {
+        let j = parseInt(Math.random() * (i + 1))
+        let temp = elements[i]
+        elements[i] = elements[j]
+        elements[j] = temp
+    }
+}
+
+function removeBoxes() {
+   $('.vstack').children().remove()
+}
+
+function push(boxes) {
+   $('.vstack').each(function(index, vstack) {
+       $(vstack).append($(boxes[index * 3 + 0]))
+       $(vstack).append($(boxes[index * 3 + 1]))
+       $(vstack).append($(boxes[index * 3 + 2]))
+   })
+}
+
+$(function() {
+   verticalCenter()
+   $('button').click(function() {
+       let boxes = getBoxes()
+       shuffle(boxes)
+       removeBoxes()
+       push(boxes)
+   })   
+})
+</script>
+<body>
+   <button>Random</button>
+   <p></p>
+   <div class="container">
+       <div class="vstack">
+           <div style="background: red">1</div>
+           <div style="background: green">2</div>
+           <div style="background: yellow">3</div>
+       </div>
+       <div class="vstack">
+           <div style="background: burlywood">4</div>
+           <div style="background: lemonchiffon">5</div>
+           <div style="background: cyan">6</div>
+       </div>
+       <div class="vstack">
+           <div style="background: blue">7</div>
+           <div style="background: brown">8</div>
+           <div style="background: lightskyblue">9</div>
+       </div>
+   </div>
+</body>
+<style>
+   .container {
+       flex-direction: column;
+       display: flex;
+       background-color: green;
+       width: 300px;
+       height: 300px;
+   }
+   .vstack {
+       display: flex;
+       background-color: pink;
+       width: 100% / 3;
+       height: 100%
+   }
+  
+   .vstack div {
+       background-color: lightgoldenrodyellow;
+       width: 100%;
+       height: 100% / 3;
+       font-size: 30px;
+       text-align: center;
+   }
+</style>
+</html>
+
+

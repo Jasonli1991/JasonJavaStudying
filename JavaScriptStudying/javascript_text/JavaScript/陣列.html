@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+// let arr = ["a", "x", "y", 10]
+// for(index in arr) {
+//     document.write(index + "<br>")
+// }
+// document.write("<hr>")
+// for(element of arr) {
+//     document.write(element + "<br>")
+// }
+// document.write("<hr>")
+// for(index in arr) {
+//     document.write(arr[index] + "<br>")
+// }
+// document.write("<hr>")
+// for(let i = 0; i < arr.length; i++) {
+//     document.write(i + "<br>")
+// }
+
+// let arr = [5, 3, 2, 7]
+// arr.forEach(function(el) {
+//     document.write(el + "<br>")
+// })
+
+//列出陣列內容
+// let arr = [5, 3, 2, 7]
+// arr.forEach(el => document.write(el + "<br>")) //arrow function
+
+//新增移除
+// let arr = [5, 3, 2, 7]
+// arr.push(20)
+// arr.unshift(100)
+// arr.pop()
+// arr.shift()
+// document.write(arr)
+
+
+//陣列找指定資料的位置
+// let arr = [5, 3, 2, 7, 5, 2, 7, 4, 2, 3, 2]
+// let x = []
+// for (let i = 0; i < arr.length; i++) {
+//   if (arr[i] == 2) {
+//     x.push(i);
+//   }
+// }
+// document.write(x)
+
+// let arr = [5, 3, 2, 7, 5, 2, 7, 4, 2, 3, 2]
+// let begin = -1
+// let find = 2
+// while(true) {
+//     begin = arr.indexOf(find, begin +1)
+//     if (begin == -1) {
+//         break
+//     }
+//     document.write(begin + "&nbsp;")
+// }
+
+//排序
+// let arr = [5, 30, 2, 7]
+// arr.sort(function(a, b) {
+//     return a - b
+// })
+// document.write(arr)
+
+// let arr = new Int32Array([5, 30, 2, 7])
+// arr.sort()
+// document.write(arr)
+
+// let arr = ["龍", "一", "王", "北", "張"]
+// arr.sort(function(a, b) {
+//     return a.localeCompare(b, "zh-Hant")
+// })
+// document.write(arr)
+// document.write("<hr>")
+
+// delete arr[2]
+// document.write(arr)
+
+// let arr = ["h", "e", "l", "l", "o"]
+// let new_arr = arr.slice(-4,3)
+// document.write(new_arr)
+
+// let arr = ["h", "e", "l", "l", "o"]
+// arr.splice(1)  //四個元素
+// //delete arr[1]  //仍為五個元素
+// document.write(arr)
+
+// let arr = ["h", "e", "l", "l", "o"]
+// arr.splice(1, 2, "x", "y", "z")
+// document.write(arr)
+
+//亂數(樂透洗牌)
+let lotto = Array(49)
+for(let i = 0; i < 49; i++) {
+    lotto[i] = i + 1
+}
+// document.write(lotto)
+for (let n = 0; n <1000; n++) { 
+    let i = parseInt(Math.random() * (lotto.length - 1))
+    let j = parseInt(Math.random() * (lotto.length - 1))
+    let tmp = lotto[i]
+    lotto[i] = lotto[j]
+    lotto[j] = tmp
+}
+document.write(lotto.slice(0,7))
+
+
+// let lotto = Array(49);
+// for (let i = 0; i < 49; i++) {
+//   lotto[i] = i + 1;
+// }
+
+// for (let n = 0; n < 1000; n++) {
+//   let i = Math.floor(Math.random() * lotto.length);
+//   let j = Math.floor(Math.random() * lotto.length);
+//   let tmp = lotto[i];
+//   lotto[i] = lotto[j];
+//   lotto[j] = tmp;
+// }
+
+// document.write(lotto.slice(0, 7));
+
+</script>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    $('div')
+        .first()
+        .children()
+        .slice(0, 1) 
+        .addClass("small")
+        .css("cursor", "pointer")
+        .click(function() {
+            $('div:last').toggleClass('small')
+        })
+    $('div')
+        .first()
+        .children()
+        .slice(1, 2) 
+        .addClass("mid")
+        .css("cursor", "pointer")
+        .click(function() {
+            $('div:last').toggleClass('mid')
+        })
+    $('div')
+        .first()
+        .children()
+        .slice(-1) 
+        .addClass("big")
+        .css("cursor", "pointer")
+        .click(function() {
+            $('div:last').toggleClass('big')
+        })
+})
+</script>
+<style>
+    .small {
+        font-size: small;
+    }
+    .mid {
+        font-size: medium;
+    }
+    .big {
+        font-size: large;
+    }
+    div:last p {
+        margin: 0;
+        font-size: inherit;
+    }
+</style>
+<body>
+    <div>
+    <span>A</span>
+    <span>A</span>
+    <span>A</span>
+    </div>
+    <div><p>逃亡狒狒昨（27）日下午被抓到，但圍捕過程因被獵槍擊中，傷勢嚴重身亡，目前案件已經交由警方調查。開槍射殺狒狒的獵人向警方供稱，自己受新竹縣政府農業處委託，且開槍有經過同意，對此他發聲明還原事情經過。
+    </p></div>
+</body>
+</html>

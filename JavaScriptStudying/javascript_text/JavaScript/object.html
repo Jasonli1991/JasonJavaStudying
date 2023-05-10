@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+// document.write(obj.name)
+// document.write(obj["age"])  //可放入變數
+//key不可重複
+
+// let arr = [
+//     {
+//         "name": "王大明",
+//         "age": "30",
+//         "birthday": "2000/5/3"
+//     },
+//     {
+//         "name": "李大媽",
+//         "age": "25",
+//         "birthday": "2000/8/4"
+//     }
+// ]
+// arr.forEach(function(obj){
+//     document.write(`姓名：${obj.name}<br>年齡：${obj.age}<br>`)
+// })
+
+//資料交換
+let json = `
+[
+    {
+        "name": "王大明",
+        "age": "30",
+        "birthday": "2000/5/3"
+    },
+    {
+        "name": "李大媽",
+        "age": "25",
+        "birthday": "2000/8/4"
+    }
+]
+`
+let jsonObj = JSON.parse(json) //JSON解析
+
+jsonObj.forEach(function(obj){
+    document.write(`姓名：${obj.name}<br>年齡：${obj.age}<br>`)
+})
+
+
+</script>
+<body>
+    
+</body>
+</html>

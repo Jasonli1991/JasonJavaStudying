@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+// let promise = new Promise(function(resolve, reject) {
+//        resolve(1)
+//        // reject('error')
+//    })
+
+
+//    promise
+//    .then(function(value) {
+//        alert(value)
+//        return 2
+//    })
+//    .then(function(value) {
+//        alert(value)
+//        throw('出錯了')
+//        return 3
+//    })
+//    .then(function(value) {
+//        alert(value)
+//    })
+//    .catch(function(reason) {
+//        alert(reason)
+// })
+
+function div(a, b) {
+   if (b == 0) {
+       return new Promise(function(resolve, reject) {
+           reject('分母不可為零')
+       })
+   } else {
+       return new Promise(function(resolve, reject) {
+           resolve(a / b)
+       })
+   }
+} 
+
+
+   div(5, 3)
+//    div(5, 0)
+   .then(function(answer) {
+       alert(answer)
+   })
+   .catch(function(reason) {
+       alert(reason)
+   })
+
+</script>
+<body>
+    
+</body>
+</html>

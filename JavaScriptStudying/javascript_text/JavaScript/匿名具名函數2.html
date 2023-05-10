@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+//變數放匿名函數
+// let x = function() {
+//     document.getElementById("demo").innerHTML = "Hello, World!"
+// }
+// window.onload = function() {
+//     x()
+// }
+
+// function hello(str, a) {
+//     a(str)
+// }
+// window.onload = function() {
+//     hello("Hi", function(x){
+//         document.getElementById("demo").innerHTML = x
+//     })
+// }
+
+function hello(str, a) {
+    let upper = str.toUpperCase()
+    let lower = str.toLowerCase()
+    a(str, upper, lower)
+}
+window.onload = function() {
+    hello("Hello, World!", function(original, upper, lower) {
+        document.getElementById("demo").innerHTML = original + "<br>" + upper + "<br>" + lower
+    })
+}
+
+
+
+//1
+function toInt(str) {
+    let n = parseInt(str)
+    if(isNan(n)) {
+        return[null, false]
+    } else {
+        return [n, true]
+    }
+}
+
+//2
+function toIntClosure(str, complete) {
+    let n = parseInt(str)
+    complete(n,isNaN(n))
+}
+
+window.onload = function() {
+    let ret = toInt("10")
+    toIntClosure("10", (n, error) => {
+        if (error) {
+            return
+        }
+        document.write("Number")
+    })
+}
+
+</script>
+<body>
+    <div id = "demo"></div>
+    <div id = "state"></div>
+</body>
+</html>

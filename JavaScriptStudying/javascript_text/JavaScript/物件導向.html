@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+//1
+// function Person(name, age) {
+//     this.name = name
+//     this.age = age
+// }
+
+//2
+class Person {
+    constructor(name,age) {   //建構子函式
+        this.name = name //加this後變為class等級的全域變數
+        this.age = age
+    }
+
+    displayName() {
+        document.write(this.name)
+    }
+}
+
+let david = new Person("David", 30)
+let tom = new Person("Tom", 20)
+document.write(david.age)
+document.write("<br>")
+
+david.displayName()
+document.write("<br>")
+
+tom.displayName()
+
+</script>
+<body>
+    
+</body>
+</html>

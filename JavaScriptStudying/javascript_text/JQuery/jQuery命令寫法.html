@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // function Person() {
+    //     this.name = function(name) {
+    //         this._name = name
+    //     }
+
+    //     this.hairColor = function(color) {
+    //         this._hairColor = color
+    //     }
+    //     this.profile = function() {
+    //         document.write(`${this._name}'s hair is ${this._hairColor}.`)
+    //     }
+    // }
+
+    // let david = new Person()
+    // david.name("David")
+    // david.hairColor("black")
+    // david.profile()
+
+
+//命令式寫法
+    function Person() {
+        this.name = function(name) {
+            this._name = name
+            return this
+        }
+
+        this.hairColor = function(color) {
+            this._hairColor = color
+            return this
+        }
+        this.profile = function() {
+            document.write(`${this._name}'s hair is ${this._hairColor}.`)
+            return this
+        }
+    }
+
+    new Person()
+        .name("Tom")
+        .hairColor("red")
+        .profile()
+        .hairColor("black")
+        .profile()
+    
+    document.write("<p>")
+    
+    let david = new Person()
+    david.name("David")
+    david.hairColor("black")
+    david.profile()
+</script>
+<body>
+    
+</body>
+</html>

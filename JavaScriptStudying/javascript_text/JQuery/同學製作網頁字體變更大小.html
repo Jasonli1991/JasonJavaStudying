@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+
+<script>
+
+$(function(){
+    $('div')
+        .first()
+        .children()
+        .slice(0,1)
+        .addClass('bigfont')
+        .click(function(){
+            $('div:last').css("font-size", "16px")
+            
+        })
+        
+     $('div')
+        .first()
+        .children()
+        .slice(1,2)
+        .addClass('midfont')
+        .click(function(){
+            $('div:last').css("font-size", "20px")
+            
+        })
+
+    $('div')
+        .first()
+        .children()
+        .slice(-1)
+        .addClass('smallfont')
+        .click(function(){
+            $('div:last').css("font-size", "24px")
+            
+        })
+})
+
+
+
+
+//     window.onload = function() {
+//         let text = document.getElementById('news').innerHTML
+//         document.getElementById('search').onkeyup = function() {
+//         let search = document.getElementById('search').value
+//         let new_text = text.replaceAll(search, `<span class="highlight">${search}</span>`)
+//         document.getElementById('news').innerHTML = new_text
+//    }
+// }
+</script>
+
+<style>
+    .d1{
+        display: inline;
+        cursor:pointer;
+    }
+
+    .bigfont {
+       font-size: xx-large;
+    }
+
+    .midfont {
+       font-size: large;
+    }
+
+
+    .smallfont {
+       font-size: small;
+    }
+</style>
+
+
+<body>
+
+
+<div class="d1">
+    <p>A</p>
+    <p>A</p>
+    <p>A</p>
+</div>
+
+<div id="news">
+
+關於品牌行銷砸錢的效果ONEBOY談「你該怎麼看這件事」 
+銷人的討論區內直有許多成衣品牌ONEBOY的討論文。關於這個橫空出世的品牌商從業人員討論已久，大家通常保持一個「看不懂」的問號視角。
+因為它真的，太敢砸錢。
+敢到一個砸破認知的程度。
+    
+</div>
+
+
+</body>
+</html>

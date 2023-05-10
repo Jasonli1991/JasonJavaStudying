@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>購物車</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<script>
+	$(function() {
+		let cart = JSON.parse(localStorage.getItem('cart')) || {} // 取得購物車資訊，如果還沒有就初始化為空物件
+		for (let productId in cart) { // 迴圈處理購物車中的每個商品
+			let quantity = cart[productId] // 取得商品數量
+			// 在購物車列表中加入一行
+			$('#cart-items').append('<tr><td id="pid">商品 ' + productId + '</td><td id="pq">' + quantity + '</td><td><button class="remove-item">移除</button></td></tr>')
+		}
+		$('#go-to-home').click(function() {
+		window.history.back()
+		})
+
+		//移除商品
+		$('.remove-item').click(function() {
+			$(this).closest('tr').remove()
+
+			// 取得更新後的購物車資訊
+			let updatedCart = {}
+			$('#cart-items tr').each(function() {
+				let productId = $(this).find('#pid').text().substring(3)
+				let quantity = $(this).find('#pq').text()
+				updatedCart[productId] = parseInt(quantity)
+			   
+			})
+			//將更新後的購物車資訊存回 localStorage 中
+			localStorage.setItem('cart', JSON.stringify(updatedCart))
+		})
+	})
+</script>
+<body>
+	<h1>購物車</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>商品名稱</th>
+				<th>數量</th>
+			</tr>
+		</thead>
+		<tbody id="cart-items">
+		</tbody>
+	</table>
+    <button id="go-to-home">回到上一頁</button>
+</body>
+</html>

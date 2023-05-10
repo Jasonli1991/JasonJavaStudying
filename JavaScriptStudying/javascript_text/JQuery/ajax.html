@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    let url = "https://raw.githubusercontent.com/kirkchu/mongodb/main/aqiv2.json"
+    $.ajax({
+        //新增轉圈圈img
+        url: url,
+        success: function(result) {
+            let jsonObj = JSON.parse(result)
+            $('label').html(jsonObj['records'][0]['sitename'])
+        },
+        statusCode: {
+            200: function() {
+                alert('success')
+            },
+            400: function() {
+                alert('not found')
+            }
+        }
+    }).done(function() {
+
+    })  //done可寫可不寫.hide()轉圈圈
+
+
+    //用以下寫法只知道有錯，不知是錯什麼
+    // $get(url, function(result) {
+
+    // }).done(function() {
+
+    // })
+})    
+    
+</script>
+<body>
+    <label></label>
+</body>
+</html>

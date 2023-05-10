@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品列表</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<h1>商品列表</h1>
+	<ul id="product-list">
+		<li>
+			<span>商品1</span>
+			<button>加入購物車</button>
+		</li>
+		<li>
+			<span>商品2</span>
+			<button>加入購物車</button>
+		</li>
+	</ul>
+	<button id="go-to-cart">購物車</button>
+
+	<script>
+		$(document).ready(function(){
+			// 將商品添加到購物車
+			function addToCart(name) {
+				var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+			// 如果購物車中已經有這個商品，則將數量加1，否則添加一個新商品
+            var found = false;
+			for (var i = 0; i < cart.length; i++) {
+				if (cart[i].name === name) {
+					cart[i].count++;
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				cart.push({ name: name, count: 1 });
+			}
+
+			localStorage.setItem('cart', JSON.stringify(cart));
+			alert('已加入購物車');
+			}
+
+			// 為加入購物車按鈕綁定事件
+			$('#product-list button').click(function(){
+				var productName = $(this).siblings('span').text();
+				addToCart(productName);
+			});
+
+			// 跳轉到購物車頁面
+			$('#go-to-cart').click(function(){
+				window.location.href = '購物車範例.html';
+			});
+		});
+</script>
+
+</body>
+</html>

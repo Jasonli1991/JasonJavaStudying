@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#a01, #a02, #a03 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 5px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    let cart = {} // 購物車內容
+    let table = $('<table border="1"></table>')
+    table.hide()
+    $('body').append(table)
+    $('button').click(function() {
+        let product = $(this).prev().html() // 獲取商品名稱
+        let found = false
+        table.children().each(function() {
+            let productName = $(this).children().slice(0,1).html()
+            if (product == productName) {
+                // 如果商品已經存在於購物車中，增加數量
+                cart[product] += 1
+                $(this).children('td').slice(1,2).html(cart[product])
+                found = true
+                return // 終止 each() 迴圈
+            }
+        })
+        if (!found) {
+            // 如果商品不存在於購物車中，添加新的行
+            cart[product] = 1
+            table.show()
+            let buylist = $('<tr><td>' + product + '</td><td>1</td><td><button>減少</button></td><td><button>移除</button></td></tr>')
+            buylist.children().slice(2, 3).children('button').click(function() {
+                cart[product]--
+                    if (cart[product] == 0) {
+                        $(this).parent().parent().remove()
+                        delete cart[product]
+                        let isEmpty = true
+                            for (product in cart) {
+                            isEmpty = false
+                            break
+                            }
+                            if (isEmpty) {
+                            table.hide()
+                            }
+                    } else {
+                        $(this).parent().prev().html(cart[product])
+                    }
+            })
+            buylist.children().slice(3).children('button').click(function() {
+                $(this).parent().parent().remove()
+                delete cart[product]
+                let isEmpty = true
+                    for (product in cart) {
+                        isEmpty = false
+                        break
+                    }
+                    if (isEmpty) {
+                        table.hide()
+                    }
+            })
+            table.append(buylist)
+        }
+    })
+})
+</script>
+<body>
+    <div id="a01">
+        <label>鉛筆</label>
+        <button>放入購物車</button>
+    </div>
+    <div id="a02">
+        <label>原子筆</label>
+        <button>放入購物車</button>
+    </div>
+    <div id="a03">
+        <label>橡皮擦</label>
+        <button>放入購物車</button>
+    </div>
+    <!-- <div>
+        <button>清空購物車</button>
+    </div> -->
+</body>
+
+</html>

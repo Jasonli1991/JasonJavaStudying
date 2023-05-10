@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<style>
+div {
+   display: inline;
+   cursor: pointer;
+}
+.small {
+   font-size: 16px;
+}
+.medium {
+   font-size: 20px;
+}
+.large {
+   font-size: 24px;
+}
+</style>
+<script>
+$(function() {
+   $("span").click(function() {
+       let size = $(this).css("font-size")
+       $("p").css("font-size", size)
+   })
+})
+
+
+/*
+window.onload = function() {
+   for(span of document.getElementsByTagName("span")) {
+       let size = getComputedStyle(span).fontSize
+       span.onclick = function() {
+           for (p of document.getElementsByTagName("p")) {
+               p.style.fontSize = size
+           }
+       }
+   }
+}
+*/
+</script>
+<body>
+<div>
+   <span class="small">A</span>
+   <span class="medium">A</span>
+   <span class="large">A</span>
+</div>
+<p>太平山過去稱為眠腦，是泰雅族語森林茂密之意，不僅蘊藏了豐富的森林資源，孕育出的生態樣貌更是多采多姿!</p>
+<p>本區海拔高差甚大，因此可見亞熱帶至冷熱帶氣候之林相。從土場開始的亞熱帶雨林、白嶺附近針闊葉混合林、到太平山與翠峰湖一帶的溫帶針葉林，可以見到十分完整林相。 亞熱帶雨林介於海拔200-500公尺間，天然林多分布於山谷兩岸，人工林則以桂竹、相思樹為主，其他樹種以山黃麻、江某、大葉楠楓香、榕樹、構樹等居多。</p>
+</body>
+</html>

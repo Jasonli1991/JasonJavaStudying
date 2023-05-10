@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+
+function getFieldName(fields, id) {
+    for (field of fields) {
+        if (field['id'] == id) {
+            return field['info']['label']
+        }
+    }
+}
+
+Object.prototype.color = function() {
+   let iAQI = parseInt(this.aqi)
+   if (iAQI < 50) {
+       return 'lightgreen'
+   } else {
+       return 'orange'
+   }
+}
+
+
+Object.prototype.geoLocation = function(location) {
+   let lon = parseFloat(this.longitude)
+   let lat = parseFloat(this.latitude)
+   location(lon, lat)
+}
+
+
+function f(jsonObj) {
+//    let jsonObj = JSON.parse(json)
+   let table_header = `
+   <table border="1">
+       <tr>
+           <th>${getFieldName(jsonObj['fields'], 'county')}</th>
+           <th>${getFieldName(jsonObj['fields'], 'sitename')}</th>
+           <th>${getFieldName(jsonObj['fields'], 'aqi')}</th>
+           <th>${getFieldName(jsonObj['fields'], 'status')}</th>
+           <th>${getFieldName(jsonObj['fields'], 'longitude')}</th>
+           <th>${getFieldName(jsonObj['fields'], 'latitude')}</th>
+       </tr>
+   `
+
+
+   let content = ""
+   jsonObj['records'].forEach(function(record) {
+       record.geoLocation(function(lon, lat) {
+           content += `
+           <tr style="background-color: ${record.color()}">
+               <td>${record['county']}</td>
+               <td>${record['sitename']}</td>
+               <td>${record['aqi']}</td>
+               <td>${record['status']}</td>
+               <td>${lon}</td>
+               <td>${lat}</td>
+           </tr>
+       `
+       })
+   })
+   let table_footer = '</table>'
+   let table = table_header + content + table_footer
+
+
+   return table
+}
+
+
+window.onload = function() {
+   fetch('https://raw.githubusercontent.com/kirkchu/mongodb/main/aqiv2.json') //傳回Promise
+   .then(function(response) {
+       return response.json()  //已自動轉json
+    //    return response.text()
+   })
+   .then(function(obj) {
+       let table = f(obj)
+       document.getElementById('data').innerHTML = table
+   })
+}
+</script>
+<body>
+<div id="data"></div>   
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<style>
+#slider {
+    width: 200px;
+    margin: 20px;
+}
+#label {
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background-color: pink;
+    border: 1px solid red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+</style>
+<script> 
+$(() => {
+    let label = $("#label") 
+    $("#slider").slider({
+        max: 200,
+        min: 100,
+        value: 140,
+        step: 10,
+        create: function() { 
+            let value = $(this).slider('value')
+            $('#label').text(value)
+            // label.text($(this).slider("value"))
+        },
+        slide: function(event, ui) {
+            let value = ui.value
+            $('#label').text(value)
+            // label.text(ui.value) 
+        }
+    }) 
+})
+</script>
+<body>
+    <div id="slider">
+        <div id="label" class="ui-slider-handle"></div>
+    </div> 
+</body>
+</html>

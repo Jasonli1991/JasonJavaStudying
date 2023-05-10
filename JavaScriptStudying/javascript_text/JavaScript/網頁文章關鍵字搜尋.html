@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+window.onload = function() {
+    let text = document.getElementById("news").innerHTML
+    document.getElementById("search").onkeyup = function() {
+        let search = document.getElementById("search").value
+        let new_text = text.replaceAll(search,`<span class="highlight">${search}</span>`)
+        document.getElementById("news").innerHTML = new_text
+    }
+}
+</script>
+<style>
+.highlight {
+    background-color: lightskyblue;
+}
+</style>
+<body>
+<input id="search" placeholder="Search"><p></p>
+<div id="news">
+    CNN
+ — 
+As two autocrats traded tributes over a feast of quail, venison, Siberian white salmon and pomegranate sorbet, China and Russia seemed to conjure the anti-Western compact the US has long feared.
+
+Chinese President Xi Jinping’s state visit this week to his friend, President Vladimir Putin, came at a critical moment of Russia’s quagmire war in Ukraine and of Beijing’s emergence as a great power whose influence now stretches far beyond Asia.
+
+The entire visit has been refracted through a prism of both nations’ mutual antagonism toward the United States. And at every step, Washington, watching hawkishly from the sidelines, poured scorn on the idea of China as a peacemaker in Ukraine, accusing Xi of offering diplomatic cover to a thuggish Russian leader who was just cited for war crimes by the International Criminal Court.
+</div>
+</body>
+</html>

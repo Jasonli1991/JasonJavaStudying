@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<script>
+$(function() {
+   $('#accordion').accordion({
+       header: 'h1',
+       active: 0,
+       heightStyle: 'content',
+       create: function(event, ui) {
+           $(".ui-accordion-header-active").css({
+               "border": "1px solid orange",
+               "background": "brown"
+           })
+       },
+       beforeActivate: function(event, ui) {
+           ui.oldHeader.css({
+               "border": "1px solid #c5c5c5",
+               "background": "#f6f6f6"           //查詢文件得知
+           })
+           ui.newHeader.css({
+               "border": "1px solid orange",
+               "background": "brown"
+           })
+       }
+   })
+})
+</script>
+<body>
+<div id="accordion">
+   <h1>第一季</h1>
+   <div>AAA</div>
+   <h1>第二季</h1>
+   <div>
+       <p>B</p>
+       <p>B</p>
+       <p>B</p>
+   </div>
+   <h1>第三季</h1>
+   <div>CCC</div>
+   <h1>第四季</h1>
+   <div>DDD</div>
+</div>
+</body>
+</html>
+
+

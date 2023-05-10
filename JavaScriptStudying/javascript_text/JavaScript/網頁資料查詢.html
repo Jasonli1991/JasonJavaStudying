@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<script>
+   let str = `
+   王大明,臺中市公益路10號,1111
+   李大媽,臺中市文心路20號,2222
+`
+window.onload = function() {
+   document.getElementById('button').onclick = function() {
+       let text = document.getElementById('search').value.trim()
+    //    str.replaceAll('\r', '')
+       let lines = str.split('\n')
+       let content = ''
+       let found = false
+       if (!text) {
+           document.getElementById("result").innerHTML = ''
+           return
+       }
+       lines.forEach(function(line) {
+           let data = line.split(',')
+           if (data[0].trim().indexOf(text) != -1) {
+               found = true
+               let name = data[0]
+               let address = data[1]
+               let tel = data[2]
+               // document.getElementById('address').innerHTML = address
+               // document.getElementById('tel').innerHTML = tel
+               content += `<tr><td>${name}</td><td>${address}</td><td>${tel}</td></tr>`
+           }
+       })
+       if (!found) {
+        document.getElementById("result").innerHTML = `
+        <table border="1">
+            <tr><th>查無此人</th></tr>
+        </table>
+        `
+            return
+       }
+       document.getElementById('result').innerHTML = `
+       <table border="1">
+           <tr><th>姓名</th><th>住址</th><th>電話</th></tr>
+           ${content}
+       </table>
+
+
+       `
+   }
+}
+</script>
+<body>
+<input id="search" placeholder="Search"><p></p>
+<button id="button">Search</button><p></p>
+<!-- <div id="address"></div>
+<div id="tel"></div> -->
+<div id="result"></div>
+</body>
+</html>
+
+

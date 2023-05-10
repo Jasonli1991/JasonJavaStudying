@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品列表</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<h1>商品列表</h1>
+	<ul id="product-list">
+		<!-- 商品列表會在這裡動態生成 -->
+	</ul>
+
+	<script>
+		$(document).ready(function() {
+			$.ajax({
+				url: "http://your-backend-api.com/products", // 替換成實際的後端 API 位置
+				dataType: "json",
+				success: function(products) {
+					var productList = $("#product-list");
+
+					// 渲染商品列表
+					$.each(products, function(index, product) {
+						var li = $("<li></li>");
+						var nameSpan = $("<span></span>").text(product.name);
+						var priceSpan = $("<span></span>").text("$" + product.price);
+						var addButton = $("<button></button>").text("加入購物車");
+
+						addButton.click(function() {
+							// 將商品添加到購物車中
+							var cart = JSON.parse(localStorage.getItem("cart")) || [];
+							var item = {
+								name: product.name,
+								price: product.price,
+								count: 1
+							};
+							cart.push(item);
+							localStorage.setItem("cart", JSON.stringify(cart));
+						});
+
+						li.append(nameSpan);
+						li.append(priceSpan);
+						li.append(addButton);
+
+						productList.append(li);
+					});
+				},
+				error: function() {
+					alert("無法獲取商品數據");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

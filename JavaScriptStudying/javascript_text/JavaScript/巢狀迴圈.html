@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+//九九乘法表
+for(let p = 2; p <= 9; p++) {
+    for(let q= 2; q <= 9; q++) {
+        document.write(`${p} X ${q} = ${p * q}<br>`)
+    }
+    document.write("<p>")
+}
+
+//泡泡排序
+let start = performance.now();
+let arr = [5, 3, 7, 2, 9, 6]
+for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+        if (arr[i] > arr[j]) {
+            let tmp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = tmp
+        }
+    }
+}
+for (el of arr) {
+    document.write(el + "&nbsp;")
+}
+
+document.write("<hr>")
+
+let end = performance.now();
+let time = end - start;
+document.write("執行時間為：" + time + "毫秒");
+</script>
+<body>
+    
+</body>
+</html>

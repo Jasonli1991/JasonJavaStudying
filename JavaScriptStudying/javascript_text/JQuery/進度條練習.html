@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<style>
+#aaa {
+    height: 20px;
+    position: relative;
+}
+
+.ui-label {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: bold;
+}
+.ui-widget-header:after {
+    content: attr(data-value) '%';
+    position: absolute;
+    left: 100%;
+    top: -1px;
+    font-size: 10px;
+    font-weight: bold;
+}
+</style>  
+<script>
+$(function() {
+    let progressBar = $('#aaa').progressbar({
+        value: 30
+    })
+    .find('.ui-widget-header')
+    .css({'background':'lightgreen'});
+    
+    let label = $('.ui-label');
+    label.text(progressBar.progressbar('value'));
+    
+    progressBar.on('progressbarchange', function(event, ui) {
+        label.text(ui.value);
+        progressBar.find('.ui-widget-header').attr('data-value', ui.value);
+    });
+});
+</script>
+<body>
+<div id="aaa">
+    <div class="ui-widget-header" data-value="30"></div>
+    <div class="ui-label"></div>
+</div>
+</body>
+    
+</html>

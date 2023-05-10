@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+</head>
+<style>
+#map {
+  height: 400px; 
+  width: 100%; 
+}
+</style>
+<script>
+function fetchAQI(complete) {
+   let url = 'https://raw.githubusercontent.com/kirkchu/mongodb/main/aqiv2.json'
+   fetch(url)
+   .then(function(response) {
+       return response.json()
+   })
+   .then(function(jsonObj) {
+       complete(jsonObj['records'])
+   })
+}
+
+function geoLocation(latitude, longitude) {
+            let lat = parseFloat(latitude)
+            let lng = parseFloat(longitude)
+            return {lat:lat, lng:lng}
+}
+
+function getColor(aqi) {
+    let iAQI = parseInt(aqi)
+    if (iAQI < 50) return 'green'
+    if (iAQI < 100) return 'yellow'
+    if (iAQI < 150) return 'orange'
+    if (iAQI < 200) return 'red'
+    if (iAQI < 300) return 'purple'
+    if (iAQI < 1000) return '#731425'
+}
+
+function initMap() {
+  const taiwan = { lat: 23.97418906666073, lng: 120.97984968650697 };
+//JavaScript寫法
+//   const map = new google.maps.Map(document.getElementById("map"), {
+//     zoom: 4,
+//     center: uluru,
+//   });
+  const map = new google.maps.Map($('#map').get(0), {
+    zoom: 7,
+    center: taiwan,
+    mapID:'194ca49cfb4ccbf8'
+    // mapID:'1d6786f5ff38fe3f'
+  });
+
+//舊版
+//   fetchAQI(function(records) {
+//     records.forEach(function(record) {
+//         const marker = new google.maps.Marker({
+//             position: geoLocation(record.latitude, record.longitude),
+//             map: map,
+//             title: record.county + record.sitename,
+//             label: record.aqi
+//         });
+
+//Beta版
+  fetchAQI(function(records) {
+    records.forEach(function(record) {
+        const pinViewScaled = new google.maps.marker.PinView({
+            scale: 0.8,
+            glyph: record.aqi,
+            background: getColor(record.aqi)
+        })
+
+        const marker = new google.maps.marker.AdvancedMarkerView({
+            position: geoLocation(record.latitude, record.longitude),
+            map: map,
+            title: record.county + record.sitename,
+            content: pinViewScaled.element,
+        });
+    })
+  })
+
+}
+
+window.initMap = initMap;
+</script>
+<body>
+   <div id="map"></div> 
+</body>
+<!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmvkdBSyAG1UJSeoC4ScR63YSs6CT8CPE&callback=initMap&v=weekly"
+      defer
+></script> -->
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmvkdBSyAG1UJSeoC4ScR63YSs6CT8CPE&callback=initMap&v=beta&libraries=marker"
+      defer
+></script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+window.onload = function() {
+    //增加等待訊息告知使用者
+    fetch("https://www.gannett-cdn.com/media/2022/03/16/USATODAY/usatsports/imageForEntry5-ODq.jpg") //傳回Promise
+    //若顯示CORS同源顯示錯誤碼,須至瀏覽器停用跨來源限制
+    .then(function(response) {
+        //移除等待訊息
+        return response.blob() //非json非text其他就是blob
+    })
+    .then(function(blob) {
+        let url = URL.createObjectURL(blob)
+        document.getElementById("image").src = url
+    })
+}    
+</script>
+<body>
+    <img id="image" width="200">
+</body>
+</html>

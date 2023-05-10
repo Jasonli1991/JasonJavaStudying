@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function()
+    //匿名函數
+    {
+        let label = document.getElementById("label1")
+        label.innerHTML = "Hi"
+
+        document.getElementById("bn1").onclick = function() {
+            clickme("red")
+        }
+        document.getElementById("bn2").onclick = function() {
+            clickme("green")
+        }
+        document.getElementById("bn3").onclick = function() {
+            clickme("blue")
+        }
+    }
+
+    function clickme(color) {
+    //具名函數
+        let label = document.getElementById("label1")
+        label.innerHTML = "Hello world!"
+
+        label.style = `color:${color}`
+    }
+</script>
+<body>
+    <button id="bn1">red</button><p></p>
+    <button id="bn2">green</button><p></p>
+    <button id="bn3">blue</button><p></p>
+    <label id="label1"></label>
+
+</body>
+</html>

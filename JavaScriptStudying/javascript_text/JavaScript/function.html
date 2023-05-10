@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+function hello(a = "Hello", name = "Jason") {
+    document.write(a + ", " + name + "<br>")
+}
+hello()
+hello("Hi")
+hello("Hi","David")
+
+
+// function f() {
+//     let i = 10   //區域變數
+// }
+// f()
+// document.write(i)
+
+// function f() {
+//     var i = 10   //全域變數
+// }
+// f()
+// document.write(i)
+
+// function f() {
+//     i = 10   //全域變數
+// }
+// f()
+// document.write(i)
+
+// let i = 50
+// function f() {
+//     let i = 20
+//     for (let i = 0; i < 20; i++) {
+
+//     }
+// }   //3個i皆不同
+
+//傳值呼叫call by value(數字,字串)
+let a = 10
+function f(i) {
+    i = 20
+}
+f(a)
+document.write(a)
+
+//傳址呼叫call by address/sharing(物件)
+// let a = [10]
+// function f(i) {
+//     i[0] = 20
+// }
+// f(a)
+// document.write(a)
+
+//延遲呼叫(非同步呼叫)
+// function f1() {
+//     document.getElementById("demo").innerHTML = "Hello, World!"
+// }
+// window.onload = function() {
+//     setTimeout("f1()", 2000)
+//     document.getElementById("state").innerHTML = "done"
+// }
+</script>
+<body>
+    <div id = "demo"></div>
+    <div id = "state"></div>
+</body>
+</html>

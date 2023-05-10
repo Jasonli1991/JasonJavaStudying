@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    // $('p').first().addClass('border')    //第一個
+    // $('p').slice(1, 2).addClass('border')    //從第一個到第二個不包含第二
+    // $('p').last().addClass('border')     //最後一個
+    // $('p').slice(-1).addClass('border')     //最後一個
+    // $('p').slice(1, 3).addClass('border')   //從第一個到第三個不包含第三
+    // $('p').slice(0).addClass('border')   //全選
+    // $('#d1 p:nth-child(3)').addClass('border')   //Ｃ加邊框
+    $('#d1 p:last-child').addClass('border')   //d1標籤最後一個加邊框(child沒有負索引)
+})
+</script>
+<style>
+.border {
+    border: 1px black solid;
+}
+</style>
+<body>
+<div id="d1">
+    <p>A</p>
+    <p>B</p>
+    <p>C</p>
+    <p>D</p>
+</div>
+<div id="d2">
+    <p>E</p>
+    <p>F</p>
+    <p>G</p>
+    <p>H</p>
+</div>
+</body>
+</html>

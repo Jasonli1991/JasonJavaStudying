@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    $('div')
+        .first()
+        .children()
+        .click(function() {
+            $(this).toggleClass('border')
+            $(this).toggleClass('color')
+        })
+})
+</script>
+<style>
+.border {
+    border: 1px black solid;
+}
+.color {
+    color:blue;
+    background-color: yellow;
+}
+</style>
+<body>
+<div>
+    <p>A</p>
+    <p>B</p>
+    <p>C</p>
+    <p>D</p>
+</div>
+<div>
+    <p>E</p>
+    <p>F</p>
+    <p>G</p>
+    <p>H</p>
+</div>
+</body>
+</html>

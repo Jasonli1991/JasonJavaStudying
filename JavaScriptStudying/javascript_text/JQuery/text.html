@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        flex-direction: column;
+        display: flex;
+        background-color: green;
+        width: 300px;
+        height: 300px;
+    }
+    .vstack {
+        display: flex;
+        background-color: pink;
+        width: 100%;
+        height: 100%;
+    }
+    .vstack div {
+        background-color: lightgoldenrodyellow;
+        width: 100%;
+        height: 100%;
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function() {
+    $('div')
+        .not('.container')
+        .not('.vstack')
+        .each(function(index, el) {
+            $(el).html('<p>' + $(el).html() +'<p>')
+        })
+})
+$(document).ready(function() {
+    $("button").click(function() {
+        let nums = [];
+        $(".vstack div").each(function() {
+            nums.push($(this).text());
+        });
+        nums.sort(function() {
+            return 0.5 - Math.random();
+        });
+        $(".vstack div").each(function(index) {
+            $(this).text(nums[index]);
+        });
+    });
+});
+</script>
+</head>
+<body>
+<button>Random</button>
+<p></p>
+<div class="container">
+    <div class="vstack">
+        <div style="background: red">1</div>
+        <div style="background: green">2</div>
+        <div style="background: yellow">3</div>
+    </div>
+    <div class="vstack">
+        <div style="background: burlywood">4</div>
+        <div style="background: lemonchiffon">5</div>
+        <div style="background: cyan">6</div>
+    </div>
+    <div class="vstack">
+        <div style="background: blue">7</div>
+        <div style="background: brown">8</div>
+        <div style="background: lightskyblue">9</div>
+    </div>
+</div>
+</body>
+</html>

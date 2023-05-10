@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Document</title>
+</head>
+<style>
+    /* 菜單列 */
+    body {
+      font-family: "Microsoft JhengHei", "微軟正黑", Sans-Serif;
+    }
+    #menu {
+      background-color: #f1f1f1; /* 設置背景顏色 */
+      display:flex;
+      margin: 7px -7px;
+    }
+    #menu ul li {
+      list-style: none;
+    }
+    h1 {
+      background-color: #384d57;
+      padding: 40px;
+      margin: -7px -7px;
+      color: white;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-weight: 100;
+    }
+    /* 鼠標移入顯示子選單，框線不變 */
+    .menuList:hover .sub-menu {
+      display: block;
+    }
+    .sub-menu-item:hover .sub-menu-menu {
+      display: block;
+    }
+    /* 子選單內部樣式 */
+    .sub-menu {
+      position: absolute; 
+      z-index: 1;
+      display: none;
+      padding: 5px 20px;
+    }
+    .sub-menu-menu {
+      position: absolute;
+      z-index: 1;
+      display: none;
+      padding: 5px 20px;
+    }
+    .sub-menu-item > span {
+      margin: -10px;
+    }
+    .menuItems {
+      background-color: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 130px;
+      height: 120px;
+      margin-top: -15px;
+      margin-left: 30px;
+    }
+    .menuItemsitems {
+      background-color: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-left: 100px; 
+      margin-top: -45px;
+      width: 200px;
+      height: 180px;
+    }
+    .sub-menu-item {
+      padding:10px 10px;
+      margin: -10px ,10px;
+    }
+    /* 將選項橫向排列 */
+    .menutag {
+      list-style-type: none;
+      margin: 0;
+      padding: 10px;
+      overflow: hidden;
+      background-color: #f1f1f1;
+      display: flex;
+      float: left;
+    }
+    .menutag li span{
+      flex-grow: 1;
+      display: inline-block;
+      font-size: 16px;
+      color: #000;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .menutag li span:hover {
+      color:#dbac5a;
+      cursor: pointer;
+    }
+
+
+
+
+ 
+    /* 頁尾樣式 */
+    footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 20px;
+      margin: 7px -7px;
+    }
+</style>
+<script>
+
+</script>
+<body>
+<div id="header">    
+<h1>Jason.js素T專賣</h1>
+<div id="menu">
+    <ul class="menutag">
+        <li class="menuList"><span>首頁</span></li>
+        <li class="menuList">
+          <span>版型風格 ▾</span>
+          <ul class="sub-menu">
+            <div class="menuItems">
+              <li class="sub-menu-item">
+                <span>短袖素T&nbsp;&nbsp;&nbsp;▸</span>
+                <ul class="sub-menu-menu">
+                  <div class="menuItemsitems">
+                    <li class="sub-menu-item-item"><span>日常T ｜ 質感好穿搭</span></li>
+                    <li class="sub-menu-item-item"><span>顯肌T ｜ 襯托傲人肌</span></li>
+                    <li class="sub-menu-item-item"><span>重磅T ｜ 杜絕激凸</span></li>
+                  </div>
+                </ul>
+              </li>
+              <li class="sub-menu-item"><span>長袖素T</span></li>
+            </div>
+          </ul>
+        </li>
+        <li class="menuList"><span>穿搭指南</span></li>
+        <li class="menuList">
+          <span>實體店面 ▾</span>
+          <ul class="sub-menu">
+            <div class="menuItems">
+              <li class="sub-menu-item"><span>公益資展館</span></li>
+              <li class="sub-menu-item"><span>北屯總太館</span></li>
+            </div>
+          </ul>
+        </li>
+    </ul>
+</div>
+</div>
+
+</body>
+<footer>
+    <p>2023 © Jason.js 素T專賣</p>
+</footer>
+</html>

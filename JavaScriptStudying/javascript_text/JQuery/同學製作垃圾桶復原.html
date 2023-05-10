@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<style>
+li {
+    background-color: aquamarine;
+}
+.drog {
+    border: 2px burlywood solid;
+    width: 240px;
+    height: 240px;
+    background-image: url(./iconmonstr-trash-can-lined-240.png);
+}
+.container {
+    display: flex;
+    width: 300px;
+    height: 300px;
+}
+#dialog {
+    display: none;
+}
+
+</style>
+<script>
+const mykey = 'KEY1'
+
+$(document).ready(function() {
+    $('li').draggable({revert: true})
+    $('.drog').droppable({
+        tolerance: "touch",
+        drop: function(event, ui) {
+            // $(ui.draggable).remove()
+            // $('#dialog').dialog('open')
+            $('#dialog').dialog({   
+                // autoOpen: false,
+                modal: true,
+                buttons: {  
+                    Ok: function() {
+                        $(this).dialog('close')
+                        let i = $(ui.draggable).html()
+                        let array = JSON.parse(localStorage.getItem(mykey)) || []
+                        array.push(i)
+                        localStorage.setItem(mykey, JSON.stringify(array))
+                        $(ui.draggable).remove()
+                    },
+                    Cancel: function() {
+                        $(this).dialog('close')
+                    }
+                }
+            })
+        }
+    })
+})
+$(function() {
+    $('button').click(function() {
+        let array = JSON.parse(localStorage.getItem(mykey)) || []
+        array.forEach(function(value) {
+            let li = $('<li>').html(value).draggable({revert: true})
+            $('.container ul').append(li)
+        })
+        localStorage.removeItem(mykey)
+    })
+})
+
+
+</script>
+<body>
+<div class="container">
+   <ul id="list">
+        <li>AAA</li>
+        <li>BBB</li>
+        <li>CCC</li>
+    </ul> 
+</div>
+<div class="drog"></div>
+<div id="dialog" title="垃圾桶">
+    確定要刪除?
+ </div>
+ <button>復原</button>
+</body>
+</html>

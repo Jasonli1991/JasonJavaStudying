@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<script>
+$(function() {
+   $("#menu").menu({
+       select: function(event, ui) {
+           let menu_id = $(event.currentTarget).attr('id')
+           let title = $(event.currentTarget).children('div').html()
+           $('#menu_id').html(menu_id)
+           $('#menu_title').html(title)
+       }
+   })
+})
+</script>
+<style>
+.ui-menu {
+   width: 150px;
+}
+</style>
+
+
+<body>
+   <ul id="menu">
+       <li id="shoppingcart"><div>購物車</div></li>
+       <li><div>訂單</div>
+           <ul>
+               <li id="order"><div>歷史訂單</div></li>
+               <!-- <li><div class="ui-state-disabled">取消記錄</div></li> -->
+               <li class="ui-state-disabled"><div>取消記錄</div></li>
+           </ul>
+       </li>
+       <li><div>個人資料</div></li>
+   </ul>
+
+
+   選單編號：<label id="menu_id"></label><br>
+   選單內容：<label id="menu_title"></label>
+
+
+</body>
+</html>
+
+

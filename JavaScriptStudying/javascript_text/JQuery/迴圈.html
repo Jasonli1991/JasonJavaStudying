@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    $('button').click(function() {
+        if($(this).html() == '隱藏') {
+            $(this).html('顯示')
+        } else {
+            $(this).html('隱藏')
+        }
+        $('div')
+        .first()
+        // .hide()
+        .toggle(2000)
+    })
+    let colors =['red', 'orange', 'yellow', 'green']
+    $('p')
+        // .first()
+        // .children()
+        .slice(2, 6) 
+        .each(function(index, element) {
+            $(element).css('background-color', colors[index])
+        })
+})
+</script>
+<body>
+    <button>隱藏</button>
+    <div>
+        <p>A</p>
+        <p>B</p>
+        <p>C</p>
+        <p>D</p>
+    </div>
+    <div>
+        <p>E</p>
+        <p>F</p>
+        <p>G</p>
+        <p>H</p>
+</body>
+</html>

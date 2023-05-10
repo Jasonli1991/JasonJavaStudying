@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+window.onload = function() {
+    let text1 = document.getElementById("text1")
+    let text2 = document.getElementById("text2")
+    let bn = document.getElementById("bn")
+    let result = document.getElementById("result")
+    bn.onclick = function() {
+        let num1 = parseFloat(text1.value)
+        let num2 = parseFloat(text2.value)
+        let mix = num1 + num2
+        result.innerHTML = mix
+    }
+}
+</script>
+<body>
+Number 1 : <input id="text1"><p></p>
+Number 2 : <input id="text2"><p></p>
+<button id="bn">ADD</button>
+<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+        // alert("hello world")
+        // console.log("hello world") //主要是除錯使用
+        // if (confirm("刪除資料")) {
+
+        // } else {
+
+        // }
+        // email = prompt("請輸入email")
+
+        // n = 5 + 3  //變數可不宣告
+        // let n = 5 + 3  //也可宣告
+        // var n = 5 + 3  //var較不嚴僅
+        // document.write("<h1>" + n + "<h1>")  //秀在網頁上，可加html標籤
+        function docLoad() {
+            let label = document.getElementById("label1")
+            label.innerHTML = "Hi"
+        }
+        function clickme(color) {
+            //alert("Hello")
+            let label = document.getElementById("label1")
+            label.innerHTML = "Hello world!"
+            //label.style = 'color:' + color
+            label.style = `color:${color}`  //多變數要替換建議用此語法
+        }
+</script>
+<body onload="docLoad()">  
+<!-- body全部載入完後執行onload -->
+    <button onclick="clickme('red')">red</button><p></p>
+    <button onclick="clickme('green')">green</button><p></p>
+    <button onclick="clickme('blue')">blue</button><p></p>
+    <label id="label1"></label>
+</body>
+</html>

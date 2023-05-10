@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<style>
+li {
+    background-color: aquamarine;
+}
+.container {
+    display: flex;
+    width: 300px;
+    height: 300px;
+}
+img.garbage {
+width: 200px;
+height: 200px;
+}
+</style>
+<script>
+$(function () {
+    $('li').draggable({ revert: true })
+    $('.garbage').droppable({
+        tolerance: 'touch',
+        drop: function (event, ui) {
+            let li = ui.draggable
+            let dialog = $('<div title="確定刪除？"></div>')
+            dialog.dialog({
+                autoOpen: true,
+                modal: true,
+                buttons: {
+                    "刪除": function () {
+                        li.remove()
+                        $(this).dialog('close')
+                    },
+                    "取消": function () {
+                        $(this).dialog('close')
+                    }
+                }
+            })
+        }
+    })
+})
+</script>
+
+<body>
+    <button>時光回朔</button>
+    <div class="container">
+        <ul>
+            <li>AAA</li>
+            <li>BBB</li>
+            <li>CCC</li>
+        </ul>
+    </div>
+    <img class="garbage"
+        src="https://truth.bahamut.com.tw/s01/202301/551813826722c98ae802687d4b1420be.PNG"
+        alt="">
+</body>
+
+</html>

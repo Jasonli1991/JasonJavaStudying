@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>   
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">   
+</head>
+<style>
+.drag {
+    background-color: aquamarine;
+    width: 100px;
+    height: 100px;
+}
+.drop {
+    border: 2px burlywood solid;
+    width: 200px;
+    height: 200px;
+}
+
+.floating {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 5px black
+}
+
+</style>
+<script>
+function resetDropObject() {
+   $('.drop').css('background-color', 'white')
+}
+
+
+$(function() {
+    $('.drag').draggable({
+        revert: true,
+        start: function(event, ui) {
+        $(this).addClass('floating')
+        },
+        stop: function(event, ui) {
+        $(this).removeClass('floating')
+        }
+    })
+
+   $('.drop').droppable({
+       drop: function(event, ui) {
+           let str = $(ui.draggable).html()
+           $(this).html(str)
+       },
+       over: function(event, ui) {
+           $(this).css('background-color', 'red')
+       },
+       out: function(event, ui) {
+           $(this).css('background-color', 'white')
+       },
+       activate: function(event, ui) {
+           $(this).css('background-color', 'lightyellow')
+           // setTimeout('resetDropObject()', 5000)
+       },
+       deactivate: function(event, ui) {
+           $(this).css('background-color', 'white')
+       }
+   })
+})
+</script>
+<body>
+<div class="drag">Hello, World!</div>
+<br>
+<br>
+<br>
+<div class="drop"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+//字串長度
+document.write("hello".length + "<br>")
+document.write("你好嗎".length + "<br>")
+//部分程式語言length是字串的記憶體容量
+document.write("你\\好\\嗎" + "<br>")
+//跳脫字元(\n換行)
+document.write('你"好嗎' + "<br>")
+document.write("你\"好'嗎")
+
+//多行字串
+let s = `
+Hello
+    World
+`
+document.write("<pre>" + s + "</pre>") 
+
+//子字串
+let str = "hello"
+document.write(str.substr(2,3))
+document.write("<br>")
+document.write(str.substring(1,4))
+document.write("<br>")
+
+//字串取代
+document.write(str.replaceAll("e", "zzz"))
+document.write("<br>")
+
+//頭尾去空白(包含space/tab/換行)
+// trim()
+
+//字串分割
+let str1 = "王大明,台中市公益路10號,123456" //CSV格式
+let arr = str1.split(",")
+document.write(arr[1])
+document.write("<br>")
+document.write("<hr>")
+
+//網頁資料查詢
+let str2 = `
+王大明,台中市公益路10號,1111
+李大媽,台中市文心路20號,2222
+`
+window.onload = function() {
+    document.getElementById("button").onclick = function() {
+        let text = document.getElementById("search").value.trim()
+        // str2.replaceAll("\r","") //CRLF格式要加這行(windows)
+        let lines  = str2.split("\n")  //windows預設CRLF(\r\n) Mac預設LF(\n)
+        let found = false //旗標變數
+        lines.forEach(function(line) {
+            let data = line.split(",")
+            if (data[0] == text) {
+                found = true
+                let address = data[1]
+                let tel = data[2]
+                document.getElementById("address").innerHTML = address
+                document.getElementById("tel").innerHTML = tel
+                document.getElementById("notfound").innerHTML =""
+            } 
+        })
+        if (!found) {
+            document.getElementById("address").innerHTML =""
+            document.getElementById("tel").innerHTML =""
+            document.getElementById("notfound").innerHTML ="查無此人"
+        }
+    }
+}
+    
+</script>
+<body>
+<input id="search" placeholder="Search"><p></p>
+<button id="button">Search</button>
+<div id="address"></div>
+<div id="tel"></div>
+<div id="notfound"></div>
+</body>
+</html>

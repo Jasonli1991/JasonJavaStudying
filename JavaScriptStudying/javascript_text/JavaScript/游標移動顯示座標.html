@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.rectangle {
+    background-color: pink;
+    width: 400px;
+    height: 400px;
+    margin: 0px;
+}
+</style>
+<script>
+window.onload = function() {
+   let rect =  document.getElementsByClassName("rectangle")[0]
+    // rect.onmousemove = function(event) {
+    //     document.getElementById("x").innerHTML = event.offsetX;
+    //     document.getElementById("y").innerHTML = event.offsetY;
+    // }
+    rect.addEventListener("mousemove", function(event) {
+        document.getElementById("x").innerHTML = event.offsetX;
+        document.getElementById("y").innerHTML = event.offsetY;
+
+    })
+}
+
+</script>
+<body>
+<div class="rectangle"></div>
+x: <span id="x">0</span><br>
+y: <span id="y">0</span>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+$(function() {
+    // $('#demo').prepend('<h1>aaa</h1>')
+    // $('#demo').append('<h2>ddd<h2>')
+    // $('#demo').append($('h1'))
+    $('#demo').before('<hr>')
+    $('#demo').after('<hr>')
+})
+</script>
+<body>
+    <h1>HIIIII</h1>
+    <div id="demo">
+        <p>Hello</p>
+    </div>
+</body>
+</html>
